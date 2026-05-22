@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#ffffff" />
+  <title>Unicode Blog Mock (Light/Dark)</title>
+  <style>
+    :root {
+      --bg: #ffffff;
+      --fg: #000000;
+      --line: #000000;
+      --panel: #ffffff;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #000000;
+        --fg: #ffffff;
+        --line: #ffffff;
+        --panel: #000000;
+      }
+    }
+
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--fg);
+      font-family: Menlo, Consolas, "Liberation Mono", monospace;
+    }
+
+    .site {
+      min-height: 100dvh;
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      border: 1px solid var(--line);
+      background: var(--panel);
+    }
+
+    .title,
+    .status {
+      border-bottom: 1px solid var(--line);
+      padding: 6px 10px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .status {
+      border-top: 1px solid var(--line);
+      border-bottom: 0;
+      padding: 2px 8px;
+    }
+
+    .shell {
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      min-height: 0;
+    }
+
+    .left {
+      border-right: 1px solid var(--line);
+      padding: 12px;
+      margin: 0;
+      white-space: pre;
+      overflow: auto;
+      line-height: 1.35;
+    }
+
+    .right {
+      padding: 12px;
+      margin: 0;
+      white-space: pre-wrap;
+      overflow: auto;
+      line-height: 1.35;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+      border-bottom: 1px dotted var(--line);
+    }
+
+    a:hover {
+      border-bottom-style: solid;
+    }
+
+    @media (max-width: 760px) {
+      .shell { grid-template-columns: 1fr; }
+      .left {
+        border-right: 0;
+        border-bottom: 1px solid var(--line);
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="site">
+    <header class="title">┌ HALPHAS KREUZ.blog ────────────────────────────────────────────────┐</header>
+    <section class="shell">
+      <pre class="left">├ INDEX TREE
+│
+├─ ▸ <a href="#">Home</a>
+├─ ▾ Posts
+│  ├─ ▸ <a href="#">Latest</a>
+│  ├─ ▸ <a href="#">Archive</a>
+│  └─ ▸ <a href="#">Tags</a>
+└─ ▸ <a href="#">About</a></pre>
+      <pre class="right">├ MAIN
+│
+├─ Post: "Hello World"
+│  Date: 2026-05-22
+│  Tags: [intro]
+│
+├─ hello world
+│
+└─ Note:
+   - No RSS
+   - Unicode-only structure
+   - Light mode: white background + black text
+   - Dark mode: black background + white text</pre>
+    </section>
+    <footer class="status">Status: mock only | rss: disabled | theme: auto light/dark</footer>
+  </main>
+</body>
+</html>

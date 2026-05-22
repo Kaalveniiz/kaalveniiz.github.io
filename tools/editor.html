@@ -1,0 +1,550 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex,nofollow" />
+  <title>Hugo Post Helper</title>
+  <style>
+    :root {
+      --bg: #ffffff;
+      --fg: #000000;
+      --line: #000000;
+      --muted: #444444;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #000000;
+        --fg: #ffffff;
+        --line: #ffffff;
+        --muted: #bdbdbd;
+      }
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Menlo, Consolas, "Liberation Mono", monospace;
+      background: var(--bg);
+      color: var(--fg);
+    }
+
+    .page {
+      min-height: 100dvh;
+      border: 1px solid var(--line);
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+    }
+
+    .bar {
+      border-bottom: 1px solid var(--line);
+      padding: 8px 10px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .foot {
+      border-top: 1px solid var(--line);
+      border-bottom: 0;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .main {
+      display: grid;
+      grid-template-columns: 320px 1fr;
+      min-height: 0;
+    }
+
+    .left, .right {
+      padding: 12px;
+      overflow: auto;
+      min-height: 0;
+    }
+
+    .left {
+      border-right: 1px solid var(--line);
+    }
+
+    .block {
+      border: 1px solid var(--line);
+      padding: 10px;
+      margin-bottom: 10px;
+    }
+
+    .block h2 {
+      margin: 0 0 8px;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .field {
+      margin-bottom: 8px;
+    }
+
+    .field label {
+      display: block;
+      margin-bottom: 4px;
+      font-size: 12px;
+    }
+
+    input[type="text"],
+    input[type="datetime-local"],
+    textarea {
+      width: 100%;
+      border: 1px solid var(--line);
+      background: var(--bg);
+      color: var(--fg);
+      font-family: inherit;
+      font-size: 13px;
+      padding: 6px;
+    }
+
+    textarea#content { min-height: 220px; }
+    textarea#output { min-height: 320px; }
+
+    .row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    button {
+      border: 1px solid var(--line);
+      background: var(--bg);
+      color: var(--fg);
+      font-family: inherit;
+      font-size: 12px;
+      padding: 5px 8px;
+      cursor: pointer;
+    }
+
+    button:hover { text-decoration: underline; }
+
+    .hint {
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.4;
+    }
+
+    .drop {
+      border: 1px dashed var(--line);
+      padding: 10px;
+      font-size: 12px;
+      margin-top: 8px;
+      white-space: pre-wrap;
+    }
+
+    .drop.dragover {
+      background: rgba(127, 127, 127, 0.12);
+    }
+
+    ul {
+      margin: 8px 0 0;
+      padding-left: 16px;
+      font-size: 12px;
+    }
+
+    @media (max-width: 880px) {
+      .main { grid-template-columns: 1fr; }
+      .left { border-right: 0; border-bottom: 1px solid var(--line); }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header class="bar">┌ HUGO POST HELPER ─────────────────────────────────────────────────┐</header>
+
+    <main class="main">
+      <section class="left">
+        <div class="block">
+          <h2>Post Meta</h2>
+          <div class="field">
+            <label for="title">Title</label>
+            <input id="title" type="text" placeholder="My New Post" />
+          </div>
+          <div class="field">
+            <label for="slug">Slug (default: DD-MM-YYYY HH:MM:SS)</label>
+            <input id="slug" type="text" placeholder="24-05-2026 09:30:00" />
+          </div>
+          <div class="field">
+            <label for="date">Date Time</label>
+            <input id="date" type="datetime-local" />
+          </div>
+          <div class="field">
+            <label for="tags">Tags (comma-separated)</label>
+            <input id="tags" type="text" placeholder="note, life" />
+          </div>
+          <div class="field">
+            <label>
+              <input id="draft" type="checkbox" />
+              Draft mode
+            </label>
+          </div>
+        </div>
+
+        <div class="block">
+          <h2>Images</h2>
+          <div class="row">
+            <input id="imageInput" type="file" accept="image/*" multiple />
+            <button id="clearImages" type="button">Clear</button>
+          </div>
+          <div id="dropZone" class="drop">Drag and drop photos here.</div>
+          <ul id="imageList"></ul>
+        </div>
+
+        <div class="block">
+          <h2>Actions</h2>
+          <div class="row">
+            <button id="generateBtn" type="button">Generate Markdown</button>
+            <button id="copyBtn" type="button">Copy Markdown</button>
+            <button id="downloadBtn" type="button">Download .md</button>
+          </div>
+          <div class="row" style="margin-top: 8px;">
+            <button id="connectBtn" type="button">Connect Repo Folder</button>
+            <button id="saveBtn" type="button">Save To Repo</button>
+          </div>
+          <p class="hint">
+            Save To Repo copies images into <code>static/images/</code> and writes post into
+            <code>content/posts/</code>. This requires Chromium-based browsers (File System Access API) in
+            a secure context (<code>https://</code> or <code>http://localhost</code>).
+          </p>
+          <p class="hint" id="status">Status: ready.</p>
+        </div>
+      </section>
+
+      <section class="right">
+        <div class="block">
+          <h2>Content</h2>
+          <textarea id="content" placeholder="Paste your post text here..."></textarea>
+        </div>
+        <div class="block">
+          <h2>Generated Markdown</h2>
+          <textarea id="output" spellcheck="false"></textarea>
+        </div>
+      </section>
+    </main>
+
+    <footer class="bar foot">Local helper only | RSS unaffected | Unicode style</footer>
+  </div>
+
+  <script>
+    const state = {
+      images: [],
+      dirHandle: null
+    };
+
+    const $ = (id) => document.getElementById(id);
+
+    function setStatus(msg) {
+      $("status").textContent = "Status: " + msg;
+    }
+
+    function refreshFsSupportStatus() {
+      const supported = Boolean(window.showDirectoryPicker);
+      const secure = Boolean(window.isSecureContext);
+      $("connectBtn").disabled = !supported || !secure;
+      $("saveBtn").disabled = !supported || !secure;
+
+      if (!supported) {
+        setStatus("folder connection unavailable in this browser. Use Chrome or Edge.");
+        return;
+      }
+      if (!secure) {
+        setStatus("folder connection needs secure context (https:// or http://localhost).");
+        return;
+      }
+      setStatus("ready.");
+    }
+
+    function nowLocalInput() {
+      const d = new Date();
+      const pad = (n) => String(n).padStart(2, "0");
+      return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}T${pad(d.getHours())}:${pad(d.getMinutes())}`;
+    }
+
+    function tomlEscape(s) {
+      return String(s).replace(/\\/g, "\\\\").replace(/"/g, '\\"');
+    }
+
+    function timestampSlug() {
+      const d = new Date();
+      const pad = (n) => String(n).padStart(2, "0");
+      return `${pad(d.getDate())}-${pad(d.getMonth() + 1)}-${d.getFullYear()} ${pad(d.getHours())}:${pad(d.getMinutes())}:${pad(d.getSeconds())}`;
+    }
+
+    function slugify(input) {
+      const s = String(input || "").toLowerCase().trim();
+      const out = s.replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
+      return out || "post";
+    }
+
+    function safeName(name) {
+      const parts = String(name || "").split(".");
+      const ext = (parts.length > 1 ? parts.pop() : "").toLowerCase() || "jpg";
+      const base = slugify(parts.join(".") || "image");
+      return { base, ext };
+    }
+
+    function splitTags(raw) {
+      return String(raw || "")
+        .split(",")
+        .map((x) => x.trim())
+        .filter(Boolean);
+    }
+
+    function formatTomlDate(dtLocal) {
+      if (!dtLocal) return new Date().toISOString();
+      const d = new Date(dtLocal);
+      if (Number.isNaN(d.getTime())) return new Date().toISOString();
+      const pad = (n) => String(Math.abs(n)).padStart(2, "0");
+      const year = d.getFullYear();
+      const month = pad(d.getMonth() + 1);
+      const day = pad(d.getDate());
+      const hour = pad(d.getHours());
+      const min = pad(d.getMinutes());
+      const sec = pad(d.getSeconds());
+      const offsetMin = -d.getTimezoneOffset();
+      const sign = offsetMin >= 0 ? "+" : "-";
+      const oh = pad(Math.floor(Math.abs(offsetMin) / 60));
+      const om = pad(Math.abs(offsetMin) % 60);
+      return `${year}-${month}-${day}T${hour}:${min}:${sec}${sign}${oh}:${om}`;
+    }
+
+    function rebuildImageList() {
+      const list = $("imageList");
+      list.innerHTML = "";
+      state.images.forEach((img) => {
+        const li = document.createElement("li");
+        li.textContent = `${img.file.name} -> /images/${img.target}`;
+        list.appendChild(li);
+      });
+    }
+
+    function addFiles(files) {
+      const used = new Set(state.images.map((x) => x.target));
+      for (const file of files) {
+        if (!file.type.startsWith("image/")) continue;
+        const { base, ext } = safeName(file.name);
+        let target = `${base}.${ext}`;
+        let i = 2;
+        while (used.has(target)) {
+          target = `${base}-${i}.${ext}`;
+          i += 1;
+        }
+        used.add(target);
+        state.images.push({ file, target, alt: base });
+      }
+      rebuildImageList();
+      setStatus(`loaded ${state.images.length} image(s).`);
+    }
+
+    function buildMarkdown() {
+      const titleRaw = $("title").value.trim();
+      const title = titleRaw || "Untitled";
+      const slugRaw = $("slug").value.trim();
+      const slug = slugRaw || timestampSlug();
+      $("slug").value = slug;
+      const tags = splitTags($("tags").value);
+      const body = $("content").value.replace(/\r\n/g, "\n");
+      const draft = $("draft").checked ? "true" : "false";
+      const date = formatTomlDate($("date").value);
+
+      const tagLine = tags.length
+        ? `[${tags.map((t) => `"${tomlEscape(t)}"`).join(", ")}]`
+        : "[]";
+
+      let md = "";
+      md += "+++\n";
+      md += `title = "${tomlEscape(title)}"\n`;
+      md += `date = ${date}\n`;
+      md += `slug = "${tomlEscape(slug)}"\n`;
+      md += `tags = ${tagLine}\n`;
+      md += `draft = ${draft}\n`;
+      md += "+++\n\n";
+      md += body.trim() ? body.trim() + "\n" : "";
+
+      if (state.images.length) {
+        md += "\n## Images\n\n";
+        state.images.forEach((img) => {
+          md += `![${img.alt}](/images/${img.target})\n\n`;
+        });
+      }
+
+      return md;
+    }
+
+    function downloadMarkdown() {
+      const md = $("output").value || buildMarkdown();
+      $("output").value = md;
+      const slug = slugify($("slug").value || timestampSlug());
+      const blob = new Blob([md], { type: "text/markdown;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = `${slug}.md`;
+      a.click();
+      URL.revokeObjectURL(url);
+      setStatus("downloaded markdown file.");
+    }
+
+    async function copyMarkdown() {
+      const md = $("output").value || buildMarkdown();
+      $("output").value = md;
+      try {
+        await navigator.clipboard.writeText(md);
+        setStatus("copied markdown to clipboard.");
+      } catch {
+        setStatus("copy failed. select output text and copy manually.");
+      }
+    }
+
+    async function connectRepo() {
+      if (!window.isSecureContext) {
+        setStatus("connect failed: not a secure context. Use Chromium with https:// or http://localhost.");
+        return;
+      }
+      if (!window.showDirectoryPicker) {
+        setStatus("connect failed: browser does not support folder access. Use Chrome or Edge.");
+        return;
+      }
+      try {
+        state.dirHandle = await window.showDirectoryPicker();
+        setStatus("repo folder connected.");
+      } catch (err) {
+        if (err && err.name === "AbortError") {
+          setStatus("connection canceled.");
+          return;
+        }
+        setStatus(`connect failed: ${err && err.message ? err.message : "unknown error"}`);
+      }
+    }
+
+    async function getOrCreateDir(parent, name) {
+      return parent.getDirectoryHandle(name, { create: true });
+    }
+
+    async function uniqueNameInDir(dirHandle, fileName) {
+      const dot = fileName.lastIndexOf(".");
+      const base = dot > 0 ? fileName.slice(0, dot) : fileName;
+      const ext = dot > 0 ? fileName.slice(dot) : "";
+      let candidate = fileName;
+      let i = 2;
+      while (true) {
+        try {
+          await dirHandle.getFileHandle(candidate, { create: false });
+          candidate = `${base}-${i}${ext}`;
+          i += 1;
+        } catch {
+          return candidate;
+        }
+      }
+    }
+
+    async function writeTextFile(dirHandle, fileName, content) {
+      const handle = await dirHandle.getFileHandle(fileName, { create: true });
+      const writable = await handle.createWritable();
+      await writable.write(content);
+      await writable.close();
+    }
+
+    async function writeBinaryFile(dirHandle, fileName, fileObj) {
+      const handle = await dirHandle.getFileHandle(fileName, { create: true });
+      const writable = await handle.createWritable();
+      await writable.write(fileObj);
+      await writable.close();
+    }
+
+    async function saveToRepo() {
+      if (!state.dirHandle) {
+        setStatus("connect repo folder first.");
+        return;
+      }
+      if (!window.isSecureContext) {
+        setStatus("save failed: not a secure context. Use Chromium with https:// or http://localhost.");
+        return;
+      }
+      if (!window.showDirectoryPicker) {
+        setStatus("save failed: browser does not support folder access. Use Chrome or Edge.");
+        return;
+      }
+
+      try {
+        const perm = await state.dirHandle.requestPermission({ mode: "readwrite" });
+        if (perm !== "granted") {
+          setStatus("read/write permission denied.");
+          return;
+        }
+
+        const contentDir = await getOrCreateDir(state.dirHandle, "content");
+        const postsDir = await getOrCreateDir(contentDir, "posts");
+        const staticDir = await getOrCreateDir(state.dirHandle, "static");
+        const imagesDir = await getOrCreateDir(staticDir, "images");
+
+        const usedTargets = new Set();
+        for (const img of state.images) {
+          let candidate = img.target;
+          if (usedTargets.has(candidate)) {
+            candidate = await uniqueNameInDir(imagesDir, candidate);
+          } else {
+            candidate = await uniqueNameInDir(imagesDir, candidate);
+          }
+          img.target = candidate;
+          usedTargets.add(candidate);
+          await writeBinaryFile(imagesDir, candidate, img.file);
+        }
+
+        const md = buildMarkdown();
+        $("output").value = md;
+
+        const slug = slugify($("slug").value || timestampSlug());
+        const mdFile = await uniqueNameInDir(postsDir, `${slug}.md`);
+        await writeTextFile(postsDir, mdFile, md);
+
+        setStatus(`saved: content/posts/${mdFile} and ${state.images.length} image(s).`);
+        rebuildImageList();
+      } catch (err) {
+        setStatus(`save failed: ${err && err.message ? err.message : "unknown error"}`);
+      }
+    }
+
+    $("date").value = nowLocalInput();
+    $("slug").value = timestampSlug();
+    refreshFsSupportStatus();
+
+    $("imageInput").addEventListener("change", (e) => {
+      addFiles(e.target.files || []);
+      e.target.value = "";
+    });
+
+    $("clearImages").addEventListener("click", () => {
+      state.images = [];
+      rebuildImageList();
+      setStatus("cleared images.");
+    });
+
+    const drop = $("dropZone");
+    drop.addEventListener("dragover", (e) => {
+      e.preventDefault();
+      drop.classList.add("dragover");
+    });
+    drop.addEventListener("dragleave", () => drop.classList.remove("dragover"));
+    drop.addEventListener("drop", (e) => {
+      e.preventDefault();
+      drop.classList.remove("dragover");
+      addFiles(e.dataTransfer.files || []);
+    });
+
+    $("generateBtn").addEventListener("click", () => {
+      $("output").value = buildMarkdown();
+      setStatus("markdown generated.");
+    });
+    $("copyBtn").addEventListener("click", copyMarkdown);
+    $("downloadBtn").addEventListener("click", downloadMarkdown);
+    $("connectBtn").addEventListener("click", connectRepo);
+    $("saveBtn").addEventListener("click", saveToRepo);
+  </script>
+</body>
+</html>

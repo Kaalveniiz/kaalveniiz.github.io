@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff" />
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000000" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} | {{ .Site.Title }}{{ end }}</title>
+  <link rel="stylesheet" href="{{ "css/site.css" | relURL }}" />
+</head>
+<body>
+  <main class="win">
+    <div class="title">┌ {{ .Site.Title }} ────────────────────────────────────────────────┐</div>
+    <section class="shell">
+      <aside class="left">{{ partial "sidebar-tree.html" . }}</aside>
+      <article class="right">{{ block "main" . }}{{ end }}</article>
+    </section>
+    <footer class="status">Status: online | rss: disabled | powered by Hugo</footer>
+  </main>
+</body>
+</html>

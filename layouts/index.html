@@ -1,0 +1,15 @@
+{{ define "main" }}
+<pre>├ MAIN
+│
+├─ Welcome to {{ .Site.Title }}
+│  {{ .Site.Params.description }}
+│
+└─ Latest Posts</pre>
+<ul class="post-list">
+  {{ range first 10 (where .Site.RegularPages "Section" "posts") }}
+  <li>├─ <a href="{{ .RelPermalink }}">{{ .Title }}</a> ({{ .Date.Format "2006-01-02" }})</li>
+  {{ else }}
+  <li>└─ no posts yet</li>
+  {{ end }}
+</ul>
+{{ end }}
