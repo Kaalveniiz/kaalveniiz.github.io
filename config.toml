@@ -12,3 +12,5 @@ title = "HALPHAS KREUZ.blog"
   tag = "tags"
 
 disableKinds = ["rss"]
+
+relativeURLs = true

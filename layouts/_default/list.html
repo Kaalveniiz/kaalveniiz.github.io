@@ -1,9 +1,9 @@
 {{ define "main" }}
-<pre>├ {{ .Title }}
+<pre>┌ {{ .Title }}
 │
 └─ Entries</pre>
 <ul class="post-list">
-  {{ range .Pages }}
+  {{ range where .Pages "Kind" "page" }}
   <li>├─ <a href="{{ .RelPermalink }}">{{ .Title }}</a> ({{ .Date.Format "2006-01-02" }})</li>
   {{ else }}
   <li>└─ no entries</li>

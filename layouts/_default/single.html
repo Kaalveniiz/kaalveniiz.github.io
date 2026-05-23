@@ -1,5 +1,5 @@
 {{ define "main" }}
-<pre>├ Post: "{{ .Title }}"
+<pre>┌ Post: "{{ .Title }}"
 │  Date: {{ .Date.Format "2006-01-02" }}
 {{ with .Params.tags }}│  Tags: [{{ delimit . "] [" }}]
 {{ end }}│

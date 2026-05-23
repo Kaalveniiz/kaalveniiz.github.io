@@ -1,20 +1,37 @@
 <!doctype html>
 <html lang="en">
-<head>
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff" />
   <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000000" />
   <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-  <title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} | {{ .Site.Title }}{{ end }}</title>
-  <link rel="stylesheet" href="{{ "css/site.css" | relURL }}" />
+  <title>Tags | HALPHAS KREUZ.blog</title>
+  <link rel="stylesheet" href="/css/site.css" />
 </head>
 <body>
   <main class="win">
-    <div class="title">┌ {{ .Site.Title }} ────────────────────────────────────────────────┐</div>
+    <div class="title">┌ HALPHAS KREUZ.blog ────────────────────────────────────────────────┐</div>
     <section class="shell">
-      <aside class="left">{{ partial "sidebar-tree.html" . }}</aside>
-      <article class="right">{{ block "main" . }}{{ end }}</article>
+      <aside class="left">├ INDEX TREE
+│
+├─ ▸ <a href="/">Home</a>
+├─ ▾ Posts
+│  ├─ ▸ <a href="/posts/">Latest</a>
+│  ├─ ▸ <a href="/posts/">Archive</a>
+│  └─ ▸ <a href="/tags/">Tags</a>
+└─ ▸ <a href="/about/">About</a>
+</aside>
+      <article class="right">
+<pre>┌ Tags
+│
+└─ Entries</pre>
+<ul class="post-list">
+  
+  <li>└─ no entries</li>
+  
+</ul>
+</article>
     </section>
     <footer class="status">Status: online | time: <span id="status-clock">--:--:--</span></footer>
   </main>
