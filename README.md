@@ -58,3 +58,8 @@ Features:
 - drag/drop images
 - generate/copy/download Markdown
 - optional direct save into `content/posts/` and `static/images/` (Chrome/Edge on `https://` or `http://localhost`)
+
+## Deployment
+
+- GitHub Actions workflow at `.github/workflows/hugo-pages.yml` builds and deploys Hugo on every push to `main`.
+- New posts in `content/posts/` appear on the site after the Actions run finishes.
