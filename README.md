@@ -63,3 +63,28 @@ Features:
 
 - GitHub Actions workflow at `.github/workflows/hugo-pages.yml` builds and deploys Hugo on every push to `main`.
 - New posts in `content/posts/` appear on the site after the Actions run finishes.
+
+## Clean structure (single source of truth)
+
+Only edit these for content/design:
+
+- `content/posts/*.md` (your posts)
+- `content/about.md`
+- `layouts/` (templates)
+- `static/` (assets)
+- `config.toml`
+
+Do not manually edit generated output:
+
+- `public/` (local build output only; ignored by git)
+- root HTML/XML output files
+
+## Safe publish checklist
+
+1. Add/edit post in `content/posts/`
+2. Ensure front matter has:
+   - `draft = false`
+   - slug with dashes only (no spaces/colon)
+3. Preview locally: `hugo server -D`
+4. Commit + push to `main`
+5. Wait for GitHub Actions deploy to finish

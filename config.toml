@@ -1,6 +1,8 @@
 baseURL = "https://kaalveniiz.github.io/"
-languageCode = "en-us"
+locale = "en-US"
 title = "HALPHAS KREUZ.blog"
+disableKinds = ["rss"]
+relativeURLs = false
 
 [params]
   description = "Unicode-style personal blog"
@@ -10,7 +12,3 @@ title = "HALPHAS KREUZ.blog"
 
 [taxonomies]
   tag = "tags"
-
-disableKinds = ["rss"]
-
-relativeURLs = true
