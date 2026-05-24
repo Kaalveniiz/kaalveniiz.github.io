@@ -6,6 +6,7 @@ relativeURLs = false
 
 [params]
   description = "Unicode-style personal blog"
+  analytics_endpoint = "https://kaalveniiz-analytics.kaalveniiz.workers.dev"
 
 [permalinks]
   posts = "/posts/:slug/"

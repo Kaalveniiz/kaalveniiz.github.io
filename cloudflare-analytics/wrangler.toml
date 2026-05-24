@@ -1,0 +1,8 @@
+name = "kaalveniiz-analytics"
+main = "src/worker.js"
+compatibility_date = "2026-05-24"
+
+[[d1_databases]]
+binding = "ANALYTICS_DB"
+database_name = "kaalveniiz_analytics"
+database_id = "36a0a20f-88ce-428d-b6fe-b0f782df3fb6"
