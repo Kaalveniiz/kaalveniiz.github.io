@@ -88,3 +88,29 @@ Do not manually edit generated output:
 3. Preview locally: `hugo server -D`
 4. Commit + push to `main`
 5. Wait for GitHub Actions deploy to finish
+
+## Analytics (prepared for later)
+
+The project already includes analytics integration code, but it is currently disabled by default.
+
+- Frontend integration kept in repo:
+  - `content/stats.md`
+  - `layouts/_default/stats.html`
+  - `static/js/analytics.js`
+  - `layouts/partials/sidebar-tree.html` (Stats link)
+  - `layouts/_default/baseof.html` (analytics script hook)
+- Backend options kept in repo:
+  - `cloudflare-analytics/`
+  - `vercel-analytics/`
+
+Current status:
+
+- `config.toml` uses `analytics_endpoint = ""` (disabled).
+- If endpoint is empty, blog works normally and stats calls are skipped.
+
+To re-enable later, set:
+
+```toml
+[params]
+  analytics_endpoint = "https://your-backend-domain/api"
+```
