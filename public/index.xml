@@ -2,31 +2,31 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>HALPHAS KREUZ.blog</title>
-    <link>http://localhost:1313/</link>
+    <link>https://kaalveniiz.github.io/</link>
     <description>Recent content on HALPHAS KREUZ.blog</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Fri, 22 May 2026 22:51:00 +0800</lastBuildDate>
-    <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://kaalveniiz.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>看到这里的朋友们你们好啊</title>
-      <link>http://localhost:1313/posts/22-05-2026-22-51-43/</link>
+      <link>https://kaalveniiz.github.io/posts/22-05-2026-22-51-43/</link>
       <pubDate>Fri, 22 May 2026 22:51:00 +0800</pubDate>
-      <guid>http://localhost:1313/posts/22-05-2026-22-51-43/</guid>
+      <guid>https://kaalveniiz.github.io/posts/22-05-2026-22-51-43/</guid>
       <description>&lt;p&gt;总之我在这里搭了个不知道会有谁看的超复古风博客&lt;/p&gt;&#xA;&lt;p&gt;写点技术相关的东西（毕竟其他的内容都会根据目标人群放到不同的平台上）&lt;/p&gt;</description>
     </item>
     <item>
       <title>About</title>
-      <link>http://localhost:1313/about/</link>
+      <link>https://kaalveniiz.github.io/about/</link>
       <pubDate>Fri, 22 May 2026 00:00:00 +0800</pubDate>
-      <guid>http://localhost:1313/about/</guid>
+      <guid>https://kaalveniiz.github.io/about/</guid>
       <description>&lt;p&gt;This is the about page.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Hello World</title>
-      <link>http://localhost:1313/posts/hello-world/</link>
+      <link>https://kaalveniiz.github.io/posts/hello-world/</link>
       <pubDate>Fri, 22 May 2026 00:00:00 +0800</pubDate>
-      <guid>http://localhost:1313/posts/hello-world/</guid>
+      <guid>https://kaalveniiz.github.io/posts/hello-world/</guid>
       <description>&lt;p&gt;hello world&lt;/p&gt;</description>
     </item>
   </channel>

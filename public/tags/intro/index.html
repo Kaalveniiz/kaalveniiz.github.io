@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="en">
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+<head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff" />
@@ -23,7 +23,7 @@
 └─ ▸ <a href="/about/">About</a>
 </aside>
       <article class="right">
-<pre>├ Intro
+<pre>┌ Intro
 │
 └─ Entries</pre>
 <ul class="post-list">
@@ -33,7 +33,26 @@
 </ul>
 </article>
     </section>
-    <footer class="status">Status: online | rss: disabled | powered by Hugo</footer>
+    <footer class="status">Status: online | time: <span id="status-clock">--:--:--</span></footer>
   </main>
+  <script>
+    (function () {
+      function pad(n) { return String(n).padStart(2, "0"); }
+      function tick() {
+        var el = document.getElementById("status-clock");
+        if (!el) return;
+        var d = new Date();
+        el.textContent =
+          d.getFullYear() + "-" +
+          pad(d.getMonth() + 1) + "-" +
+          pad(d.getDate()) + " " +
+          pad(d.getHours()) + ":" +
+          pad(d.getMinutes()) + ":" +
+          pad(d.getSeconds());
+      }
+      tick();
+      if (window.setInterval) window.setInterval(tick, 1000);
+    })();
+  </script>
 </body>
 </html>
