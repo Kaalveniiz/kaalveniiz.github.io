@@ -1,26 +1,3 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Posts on HALPHAS KREUZ.blog</title>
-    <link>https://kaalveniiz.github.io/posts/</link>
-    <description>Recent content in Posts on HALPHAS KREUZ.blog</description>
-    <generator>Hugo</generator>
-    <language>en-us</language>
-    <lastBuildDate>Fri, 22 May 2026 22:51:00 +0800</lastBuildDate>
-    <atom:link href="https://kaalveniiz.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>看到这里的朋友们你们好啊</title>
-      <link>https://kaalveniiz.github.io/posts/22-05-2026-22-51-43/</link>
-      <pubDate>Fri, 22 May 2026 22:51:00 +0800</pubDate>
-      <guid>https://kaalveniiz.github.io/posts/22-05-2026-22-51-43/</guid>
-      <description>&lt;p&gt;总之我在这里搭了个不知道会有谁看的超复古风博客&lt;/p&gt;&#xA;&lt;p&gt;写点技术相关的东西（毕竟其他的内容都会根据目标人群放到不同的平台上）&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>Hello World</title>
-      <link>https://kaalveniiz.github.io/posts/hello-world/</link>
-      <pubDate>Fri, 22 May 2026 00:00:00 +0800</pubDate>
-      <guid>https://kaalveniiz.github.io/posts/hello-world/</guid>
-      <description>&lt;p&gt;hello world&lt;/p&gt;</description>
-    </item>
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on HALPHAS KREUZ.blog</title><link>https://kaalveniiz.github.io/posts/</link><description>Recent content in Posts on HALPHAS KREUZ.blog</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Sun, 24 May 2026 11:11:00 +0800</lastBuildDate><atom:link href="https://kaalveniiz.github.io/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>有一说一我测试博客都发了几个了</title><link>https://kaalveniiz.github.io/posts/24-05-2026-11-11-40/</link><pubDate>Sun, 24 May 2026 11:11:00 +0800</pubDate><guid>https://kaalveniiz.github.io/posts/24-05-2026-11-11-40/</guid><description>&lt;p&gt;这个页面纯粹是用来测试架构的。
+现在的状态是博客能跑但是我搞不明白哪来这么多冗余文件。&lt;/p&gt;</description></item><item><title>看到这里的朋友们你们好啊</title><link>https://kaalveniiz.github.io/posts/22-05-2026-22-51-43/</link><pubDate>Fri, 22 May 2026 22:51:00 +0800</pubDate><guid>https://kaalveniiz.github.io/posts/22-05-2026-22-51-43/</guid><description>&lt;p&gt;总之我在这里搭了个不知道会有谁看的超复古风博客&lt;/p&gt;
+&lt;p&gt;写点技术相关的东西（毕竟其他的内容都会根据目标人群放到不同的平台上）&lt;/p&gt;</description></item><item><title>Hello World</title><link>https://kaalveniiz.github.io/posts/hello-world/</link><pubDate>Fri, 22 May 2026 00:00:00 +0800</pubDate><guid>https://kaalveniiz.github.io/posts/hello-world/</guid><description>&lt;p&gt;hello world&lt;/p&gt;</description></item></channel></rss>
