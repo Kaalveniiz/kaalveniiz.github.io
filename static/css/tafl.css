@@ -13,8 +13,10 @@
   position: relative;
   width: calc((var(--size) - 1) * var(--cell) + (2 * var(--pad)));
   height: calc((var(--size) - 1) * var(--cell) + (2 * var(--pad)));
+  margin: 24px;
   border: 1px solid #000;
   background: #fff;
+  overflow: visible;
   user-select: none;
 }
 
@@ -53,13 +55,27 @@
 }
 
 .tafl-label-col {
-  top: 4px;
   transform: translateX(-50%);
 }
 
 .tafl-label-row {
-  left: 6px;
   transform: translateY(-50%);
+}
+
+.tafl-label-col-top {
+  top: -16px;
+}
+
+.tafl-label-col-bottom {
+  bottom: -16px;
+}
+
+.tafl-label-row-left {
+  left: -20px;
+}
+
+.tafl-label-row-right {
+  right: -20px;
 }
 
 .tafl-point.throne {
