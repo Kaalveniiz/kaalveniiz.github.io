@@ -1,0 +1,24 @@
+{{ define "head_extra" }}
+<link rel="stylesheet" href="{{ "css/tafl.css" | relURL }}" />
+{{ end }}
+
+{{ define "main" }}
+<pre>┌ Tafl Board
+│
+├─ Drag a piece to a legal square
+├─ Click "AI Move" for current side
+└─ Refresh resets the board</pre>
+
+<div class="tafl-wrap">
+  <div id="tafl-status" class="tafl-status">Loading board...</div>
+  <div id="tafl-board" class="tafl-board" aria-label="Tafl board"></div>
+  <div class="tafl-actions">
+    <button id="tafl-ai-move" type="button">AI Move</button>
+    <button id="tafl-reset" type="button">Reset</button>
+  </div>
+</div>
+{{ end }}
+
+{{ define "page_scripts" }}
+<script src="{{ "js/tafl.js" | relURL }}" defer></script>
+{{ end }}

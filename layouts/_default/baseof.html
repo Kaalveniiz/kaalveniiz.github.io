@@ -7,6 +7,7 @@
   <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000000" />
   <meta name="apple-mobile-web-app-status-bar-style" content="default" />
   <meta name="analytics-endpoint" content="{{ .Site.Params.analytics_endpoint }}" />
+  {{ block "head_extra" . }}{{ end }}
   <title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} | {{ .Site.Title }}{{ end }}</title>
   <link rel="stylesheet" href="{{ "css/site.css" | relURL }}" />
 </head>
@@ -38,6 +39,7 @@
       if (window.setInterval) window.setInterval(tick, 1000);
     })();
   </script>
+  {{ block "page_scripts" . }}{{ end }}
   <script src="{{ "js/analytics.js" | relURL }}" defer></script>
 </body>
 </html>

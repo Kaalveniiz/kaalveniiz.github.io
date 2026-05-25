@@ -1,0 +1,175 @@
+.tafl-wrap {
+  margin-top: 10px;
+}
+
+.tafl-status {
+  margin-bottom: 8px;
+}
+
+.tafl-board {
+  --size: 11;
+  --cell: 40px;
+  --pad: 20px;
+  position: relative;
+  width: calc((var(--size) - 1) * var(--cell) + (2 * var(--pad)));
+  height: calc((var(--size) - 1) * var(--cell) + (2 * var(--pad)));
+  border: 1px solid #000;
+  background: #fff;
+  user-select: none;
+}
+
+.tafl-line {
+  position: absolute;
+  background: #000;
+  z-index: 1;
+}
+
+.tafl-line-h {
+  height: 1px;
+}
+
+.tafl-line-v {
+  width: 1px;
+}
+
+.tafl-point {
+  position: absolute;
+  width: 28px;
+  height: 28px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tafl-label {
+  position: absolute;
+  font-size: 12px;
+  line-height: 1;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.tafl-label-col {
+  top: 4px;
+  transform: translateX(-50%);
+}
+
+.tafl-label-row {
+  left: 6px;
+  transform: translateY(-50%);
+}
+
+.tafl-point.throne {
+  box-shadow: inset 0 0 0 1px #000;
+}
+
+.tafl-point.corner {
+  box-shadow: inset 0 0 0 1px #000;
+}
+
+.tafl-point.legal {
+  outline: 1px dashed #000;
+  outline-offset: 1px;
+}
+
+.tafl-corner-label {
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.tafl-piece {
+  width: 24px;
+  height: 24px;
+  border: 1px solid #000;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: grab;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.tafl-piece.attacker {
+  background: #000;
+  color: #fff;
+}
+
+.tafl-piece.defender {
+  background: #fff;
+  color: #000;
+}
+
+.tafl-piece.king {
+  background: #fff;
+  color: #000;
+  border-width: 2px;
+}
+
+.tafl-actions {
+  margin-top: 8px;
+  display: flex;
+  gap: 8px;
+}
+
+.tafl-actions button {
+  border: 1px solid #000;
+  background: #fff;
+  color: #000;
+  padding: 4px 8px;
+  font: inherit;
+  cursor: pointer;
+}
+
+@media (prefers-color-scheme: dark) {
+  .tafl-board,
+  .tafl-piece,
+  .tafl-actions button,
+  .tafl-point.throne,
+  .tafl-point.corner,
+  .tafl-point.legal {
+    border-color: #fff;
+  }
+
+  .tafl-board {
+    background: #000;
+  }
+
+  .tafl-line {
+    background: #fff;
+  }
+
+  .tafl-point.throne,
+  .tafl-point.corner {
+    box-shadow: inset 0 0 0 1px #fff;
+  }
+
+  .tafl-point.legal {
+    outline-color: #fff;
+  }
+
+  .tafl-label,
+  .tafl-corner-label {
+    color: #fff;
+  }
+
+  .tafl-piece.attacker {
+    background: #fff;
+    color: #000;
+  }
+
+  .tafl-piece.defender,
+  .tafl-piece.king {
+    background: #000;
+    color: #fff;
+  }
+
+  .tafl-actions button {
+    background: #000;
+    color: #fff;
+  }
+}
