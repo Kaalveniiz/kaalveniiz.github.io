@@ -22,6 +22,7 @@
 
   var state = createInitialState();
   var dragFrom = null;
+  var clickFrom = null;
   var legalTargets = [];
 
   boardEl.style.setProperty("--size", String(SIZE));
@@ -345,22 +346,33 @@
 
   function clearDrag() {
     dragFrom = null;
+    clickFrom = null;
     legalTargets = [];
     render();
   }
 
   function tryDrop(toR, toC) {
-    if (!dragFrom) return;
-    if (!legalTargetFor(dragFrom, toR, toC)) {
+    var from = dragFrom || clickFrom;
+    if (!from) return;
+    if (!legalTargetFor(from, toR, toC)) {
       clearDrag();
       return;
     }
-    var move = { from: { r: dragFrom.r, c: dragFrom.c }, to: { r: toR, c: toC } };
+    var move = { from: { r: from.r, c: from.c }, to: { r: toR, c: toC } };
     var res = applyMove(state.board, move);
     state.lastMove = formatMove(move, "You");
     if (res.winner) state.winner = res.winner;
     else state.turn = state.turn === "attackers" ? "defenders" : "attackers";
     clearDrag();
+  }
+
+  function startClickMove(fromR, fromC) {
+    var piece = state.board[fromR][fromC];
+    if (state.winner || sideOf(piece) !== state.turn) return;
+    clickFrom = { r: fromR, c: fromC };
+    dragFrom = null;
+    legalTargets = legalMovesForPiece(state.board, fromR, fromC);
+    render();
   }
 
   function renderStatus() {
@@ -398,16 +410,28 @@
     var letters = "abcdefghijk".split("");
     for (var i = 0; i < SIZE; i++) {
       var top = document.createElement("div");
-      top.className = "tafl-label tafl-label-col";
+      top.className = "tafl-label tafl-label-col tafl-label-col-top";
       top.textContent = letters[i] || "";
       top.style.left = pointPx(i) + "px";
       boardEl.appendChild(top);
 
+      var bottom = document.createElement("div");
+      bottom.className = "tafl-label tafl-label-col tafl-label-col-bottom";
+      bottom.textContent = letters[i] || "";
+      bottom.style.left = pointPx(i) + "px";
+      boardEl.appendChild(bottom);
+
       var left = document.createElement("div");
-      left.className = "tafl-label tafl-label-row";
+      left.className = "tafl-label tafl-label-row tafl-label-row-left";
       left.textContent = String(i + 1);
       left.style.top = pointPx(i) + "px";
       boardEl.appendChild(left);
+
+      var right = document.createElement("div");
+      right.className = "tafl-label tafl-label-row tafl-label-row-right";
+      right.textContent = String(i + 1);
+      right.style.top = pointPx(i) + "px";
+      boardEl.appendChild(right);
     }
   }
 
@@ -422,7 +446,8 @@
         point.className = "tafl-point";
         if (isThrone(r, c)) point.classList.add("throne");
         if (isCorner(r, c)) point.classList.add("corner");
-        if (dragFrom && legalTargetFor(dragFrom, r, c)) point.classList.add("legal");
+        var activeFrom = dragFrom || clickFrom;
+        if (activeFrom && legalTargetFor(activeFrom, r, c)) point.classList.add("legal");
 
         point.style.left = pointPx(c) + "px";
         point.style.top = pointPx(r) + "px";
@@ -432,6 +457,21 @@
           point.addEventListener("drop", function (ev) {
             ev.preventDefault();
             tryDrop(rr, cc);
+          });
+          point.addEventListener("click", function () {
+            if (clickFrom) {
+              if (clickFrom.r === rr && clickFrom.c === cc) {
+                clearDrag();
+                return;
+              }
+              tryDrop(rr, cc);
+              return;
+            }
+
+            var piece = state.board[rr][cc];
+            if (piece !== EMPTY && sideOf(piece) === state.turn) {
+              startClickMove(rr, cc);
+            }
           });
         })(r, c);
 
@@ -466,6 +506,7 @@
   resetBtn.addEventListener("click", function () {
     state = createInitialState();
     dragFrom = null;
+    clickFrom = null;
     legalTargets = [];
     render();
   });
