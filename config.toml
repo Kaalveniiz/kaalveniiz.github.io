@@ -1,6 +1,6 @@
 baseURL = "https://kaalveniiz.github.io/"
 locale = "en-US"
-title = "HALPHAS KREUZ.blog"
+title = "kaalveniiz.blog"
 disableKinds = ["rss"]
 relativeURLs = false
 

@@ -166,8 +166,8 @@
             <input id="title" type="text" placeholder="My New Post" />
           </div>
           <div class="field">
-            <label for="slug">Slug (default: DD-MM-YYYY HH:MM:SS)</label>
-            <input id="slug" type="text" placeholder="24-05-2026 09:30:00" />
+            <label for="slug">Slug (default: title + YYYYMMDD-HHMMSS)</label>
+            <input id="slug" type="text" placeholder="my-post-20260525-235959" />
           </div>
           <div class="field">
             <label for="date">Date Time</label>
@@ -269,10 +269,10 @@
       return String(s).replace(/\\/g, "\\\\").replace(/"/g, '\\"');
     }
 
-    function timestampSlug() {
+    function timestampToken() {
       const d = new Date();
       const pad = (n) => String(n).padStart(2, "0");
-      return `${pad(d.getDate())}-${pad(d.getMonth() + 1)}-${d.getFullYear()} ${pad(d.getHours())}:${pad(d.getMinutes())}:${pad(d.getSeconds())}`;
+      return `${d.getFullYear()}${pad(d.getMonth() + 1)}${pad(d.getDate())}-${pad(d.getHours())}${pad(d.getMinutes())}${pad(d.getSeconds())}`;
     }
 
     function slugify(input) {
@@ -293,6 +293,12 @@
         .split(",")
         .map((x) => x.trim())
         .filter(Boolean);
+    }
+
+    function defaultGeneratedSlug() {
+      const title = $("title").value.trim();
+      const base = slugify(title || "post");
+      return `${base}-${timestampToken()}`;
     }
 
     function formatTomlDate(dtLocal) {
@@ -345,7 +351,7 @@
       const titleRaw = $("title").value.trim();
       const title = titleRaw || "Untitled";
       const slugRaw = $("slug").value.trim();
-      const slug = slugRaw || timestampSlug();
+      const slug = slugRaw || defaultGeneratedSlug();
       $("slug").value = slug;
       const tags = splitTags($("tags").value);
       const body = $("content").value.replace(/\r\n/g, "\n");
@@ -379,7 +385,7 @@
     function downloadMarkdown() {
       const md = $("output").value || buildMarkdown();
       $("output").value = md;
-      const slug = slugify($("slug").value || timestampSlug());
+      const slug = slugify($("slug").value || defaultGeneratedSlug());
       const blob = new Blob([md], { type: "text/markdown;charset=utf-8" });
       const url = URL.createObjectURL(blob);
       const a = document.createElement("a");
@@ -499,7 +505,7 @@
         const md = buildMarkdown();
         $("output").value = md;
 
-        const slug = slugify($("slug").value || timestampSlug());
+        const slug = slugify($("slug").value || defaultGeneratedSlug());
         const mdFile = await uniqueNameInDir(postsDir, `${slug}.md`);
         await writeTextFile(postsDir, mdFile, md);
 
@@ -511,7 +517,6 @@
     }
 
     $("date").value = nowLocalInput();
-    $("slug").value = timestampSlug();
     refreshFsSupportStatus();
 
     $("imageInput").addEventListener("change", (e) => {
