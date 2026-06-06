@@ -1,0 +1,12 @@
+{{ define "main" }}
+<pre>┌ Archive
+│
+└─ All Posts</pre>
+<ul class="post-list">
+  {{ range (where .Site.RegularPages "Section" "posts").ByDate.Reverse }}
+  <li>├─ <a href="{{ .RelPermalink }}">{{ .Title }}</a> ({{ .Date.Format "2006-01-02" }})</li>
+  {{ else }}
+  <li>└─ no entries</li>
+  {{ end }}
+</ul>
+{{ end }}

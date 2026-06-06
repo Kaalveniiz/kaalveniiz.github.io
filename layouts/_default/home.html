@@ -4,12 +4,6 @@
 ├─ Welcome to {{ .Site.Title }}
 │  {{ .Site.Params.description }}
 │
-└─ Latest Posts</pre>
-<ul class="post-list">
-  {{ range first 10 (where .Site.RegularPages "Section" "posts") }}
-  <li>├─ <a href="{{ .RelPermalink }}">{{ .Title }}</a> ({{ .Date.Format "2006-01-02" }})</li>
-  {{ else }}
-  <li>└─ no posts yet</li>
-  {{ end }}
-</ul>
+└─ Home</pre>
+<p>This blog is a bonfire between boss fights: guidance documents dragged out of the fog and reforged into implementation checklists. Here, compliance is not theater but stamina, repetition, and precise execution under punishment. There are no kudos, no comments, no summon signs on this floor. Still, I wonder which hollowed traveler found this page and chose to keep going.</p>
 {{ end }}
