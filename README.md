@@ -89,9 +89,9 @@ Do not manually edit generated output:
 4. Commit + push to `main`
 5. Wait for GitHub Actions deploy to finish
 
-## Analytics (prepared for later)
+## Analytics
 
-The project already includes analytics integration code, but it is currently disabled by default.
+The project includes a privacy-conscious Cloudflare Worker and D1 counter for unique human visitors and aggregate AI reads. It is currently disabled by default.
 
 - Frontend integration kept in repo:
   - `content/stats.md`
@@ -99,8 +99,9 @@ The project already includes analytics integration code, but it is currently dis
   - `static/js/analytics.js`
   - `layouts/partials/sidebar-tree.html` (Stats link)
   - `layouts/_default/baseof.html` (analytics script hook)
-- Backend options kept in repo:
+- Active backend implementation:
   - `cloudflare-analytics/`
+- Archived alternative, not used:
   - `vercel-analytics/`
 
 Current status:
@@ -108,9 +109,11 @@ Current status:
 - `config.toml` uses `analytics_endpoint = ""` (disabled).
 - If endpoint is empty, blog works normally and stats calls are skipped.
 
-To re-enable later, set:
+After deploying the Worker, enable it with:
 
 ```toml
 [params]
-  analytics_endpoint = "https://your-backend-domain/api"
+  analytics_endpoint = "https://kaalveniiz-analytics.<your-subdomain>.workers.dev"
 ```
+
+The public Stats page shows unique human visitors plus AI crawler, AI search, and AI assistant reads for the last completed Hong Kong day and overall through that day. The backend stores only keyed HMAC visitor identifiers and daily AI category totals, never raw IP addresses or crawler identities. AI measurement requires a custom domain proxied through Cloudflare. See `cloudflare-analytics/README.md` for setup and deployment.

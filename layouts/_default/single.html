@@ -1,8 +1,27 @@
 {{ define "main" }}
-<pre>┌ Post: "{{ .Title }}"
-│  Date: {{ .Date.Format "2006-01-02" }}
-{{ with .Params.tags }}│  Tags: [{{ delimit . "] [" }}]
-{{ end }}│
-└─ Content</pre>
-<div>{{ .Content }}</div>
+{{ if eq .Section "posts" }}
+<header class="page-header post-header">
+  <p class="eyebrow">┌ WRITING / POST</p>
+  <h1>{{ .Title }}</h1>
+  <div class="post-meta">
+    <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006-01-02" }}</time>
+    {{- with .GetTerms "tags" }}
+      <span aria-hidden="true"> · </span>
+      Filed under
+      {{- range $index, $tag := . }}{{ if $index }}, {{ end }} <a href="{{ $tag.RelPermalink }}">{{ $tag.LinkTitle }}</a>{{ end }}
+    {{- end }}
+  </div>
+</header>
+<div class="post-content">{{ .Content }}</div>
+<nav class="post-pagination" aria-label="More posts">
+  <div>{{ with .PrevInSection }}<span>Previous post</span><a href="{{ .RelPermalink }}">← {{ .Title }}</a>{{ end }}</div>
+  <div>{{ with .NextInSection }}<span>Next post</span><a href="{{ .RelPermalink }}">{{ .Title }} →</a>{{ end }}</div>
+</nav>
+{{ else }}
+<header class="page-header">
+  <p class="eyebrow">┌ INFO / PAGE</p>
+  <h1>{{ .Title }}</h1>
+</header>
+<div class="post-content">{{ .Content }}</div>
+{{ end }}
 {{ end }}

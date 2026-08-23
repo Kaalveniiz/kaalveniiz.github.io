@@ -1,12 +1,12 @@
-baseURL = "https://kaalveniiz.github.io/"
+baseURL = "https://kaalveniiz.net/"
 locale = "en-US"
 title = "kaalveniiz.blog"
 disableKinds = ["rss"]
 relativeURLs = false
 
 [params]
-  description = "Unicode-style personal blog"
-  analytics_endpoint = ""
+  description = "Notes on medical-device software, AI regulation, cybersecurity, and implementation."
+  analytics_endpoint = "https://kaalveniiz-analytics.kaalveniiz-blog.workers.dev"
 
 [permalinks]
   posts = "/posts/:slug/"

@@ -1,9 +1,18 @@
 {{ define "main" }}
-<pre>┌ MAIN
-│
-├─ Welcome to {{ .Site.Title }}
-│  {{ .Site.Params.description }}
-│
-└─ Home</pre>
-<p>This blog is a bonfire between boss fights: guidance documents dragged out of the fog and reforged into implementation checklists. Here, compliance is not theater but stamina, repetition, and precise execution under punishment. There are no kudos, no comments, no summon signs on this floor. Still, I wonder which hollowed traveler found this page and chose to keep going.</p>
+{{- $posts := (where .Site.RegularPages "Section" "posts").ByDate.Reverse -}}
+<header class="page-header">
+  <p class="eyebrow">┌ START HERE</p>
+  <h1>{{ .Site.Title }}</h1>
+  <p class="page-intro">{{ .Site.Params.description }}</p>
+</header>
+
+<p class="home-copy">This blog is a bonfire between boss fights: guidance documents dragged out of the fog and reforged into implementation checklists. Here, compliance is not theater but stamina, repetition, and precise execution under punishment. There are no kudos, no comments, no summon signs on this floor. Still, I wonder which hollowed traveler found this page and chose to keep going.</p>
+
+<section class="content-section" aria-labelledby="recent-heading">
+  <div class="section-heading">
+    <h2 id="recent-heading">Recent writing</h2>
+    <a href="{{ "/posts/" | relURL }}">View latest →</a>
+  </div>
+  {{ partial "post-list.html" (first 3 $posts) }}
+</section>
 {{ end }}

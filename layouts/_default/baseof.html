@@ -12,11 +12,12 @@
   <link rel="stylesheet" href="{{ "css/site.css" | relURL }}" />
 </head>
 <body>
+  <a class="skip-link" href="#content">Skip to content</a>
   <main class="win">
     <div class="title">┌ {{ .Site.Title }} ────────────────────────────────────────────────┐</div>
     <section class="shell">
       <aside class="left">{{ partial "sidebar-tree.html" . }}</aside>
-      <article class="right">{{ block "main" . }}{{ end }}</article>
+      <article class="right" id="content">{{ block "main" . }}{{ end }}</article>
     </section>
     <footer class="status">Status: online | time: <span id="status-clock">--:--:--</span></footer>
   </main>

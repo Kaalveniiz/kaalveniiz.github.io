@@ -1,9 +1,23 @@
-├ INDEX TREE
+{{- $isLatest := and (eq .Kind "section") (eq .Section "posts") -}}
+{{- $isArchive := eq .RelPermalink ("/archive/" | relURL) -}}
+{{- $isTopics := or (eq .Kind "taxonomy") (eq .Kind "term") -}}
+{{- $isTafl := eq .RelPermalink ("/tafl/" | relURL) -}}
+{{- $isStats := eq .RelPermalink ("/stats/" | relURL) -}}
+{{- $isAbout := eq .RelPermalink ("/about/" | relURL) -}}
+<nav class="site-nav" aria-label="Primary navigation">
+├ SITE MAP
 │
-├─ ▸ <a href="{{ "/" | relURL }}">Home</a>
-├─ ▾ Posts
-│  ├─ ▸ <a href="{{ "/posts/" | relURL }}">Latest</a>
-│  ├─ ▸ <a href="{{ "/archive/" | relURL }}">Archive</a>
-│  └─ ▸ <a href="{{ "/tags/" | relURL }}">Tags</a>
-├─ ▸ <a href="{{ "/tafl/" | relURL }}">Tafl</a>
-└─ ▸ <a href="{{ "/about/" | relURL }}">About</a>
+├─ ▸ <a{{ if .IsHome }} class="is-active" aria-current="page"{{ end }} href="{{ "/" | relURL }}">Home</a>
+│
+├─ ▾ WRITING
+│  ├─ ▸ <a{{ if $isLatest }} class="is-active" aria-current="page"{{ end }} href="{{ "/posts/" | relURL }}">Latest</a>
+│  ├─ ▸ <a{{ if $isArchive }} class="is-active" aria-current="page"{{ end }} href="{{ "/archive/" | relURL }}">Archive</a>
+│  └─ ▸ <a{{ if $isTopics }} class="is-active" aria-current="page"{{ end }} href="{{ "/tags/" | relURL }}">Topics <span class="nav-count">({{ len .Site.Taxonomies.tags }})</span></a>
+│
+├─ ▾ EXPLORE
+│  └─ ▸ <a{{ if $isTafl }} class="is-active" aria-current="page"{{ end }} href="{{ "/tafl/" | relURL }}">Tafl</a>
+│
+└─ ▾ INFO
+   ├─ ▸ <a{{ if $isStats }} class="is-active" aria-current="page"{{ end }} href="{{ "/stats/" | relURL }}">Stats</a>
+   └─ ▸ <a{{ if $isAbout }} class="is-active" aria-current="page"{{ end }} href="{{ "/about/" | relURL }}">About</a>
+</nav>

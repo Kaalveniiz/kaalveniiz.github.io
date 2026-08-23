@@ -1,12 +1,14 @@
 {{ define "main" }}
-<pre>┌ {{ .Title }}
-│
-└─ Tags</pre>
-<ul class="post-list">
+<header class="page-header">
+  <p class="eyebrow">┌ WRITING / TOPICS</p>
+  <h1>Topics</h1>
+  <p class="page-intro">Series and subjects across the blog.</p>
+</header>
+<ul class="topic-list">
   {{ range .Data.Terms.Alphabetical }}
-  <li>├─ <a href="{{ .Page.RelPermalink }}">{{ .Page.Title }}</a> ({{ .Count }})</li>
+  <li><a href="{{ .Page.RelPermalink }}"><span>{{ .Page.Title }}</span><span class="topic-count">{{ .Count }} {{ if eq .Count 1 }}post{{ else }}posts{{ end }}</span></a></li>
   {{ else }}
-  <li>└─ no tags yet</li>
+  <li class="empty-state">No topics yet.</li>
   {{ end }}
 </ul>
 {{ end }}

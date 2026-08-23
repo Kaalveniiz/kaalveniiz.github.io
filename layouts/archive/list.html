@@ -1,12 +1,23 @@
 {{ define "main" }}
-<pre>┌ Archive
-│
-└─ All Posts</pre>
-<ul class="post-list">
-  {{ range (where .Site.RegularPages "Section" "posts").ByDate.Reverse }}
-  <li>├─ <a href="{{ .RelPermalink }}">{{ .Title }}</a> ({{ .Date.Format "2006-01-02" }})</li>
+{{- $posts := (where .Site.RegularPages "Section" "posts").ByDate.Reverse -}}
+<header class="page-header">
+  <p class="eyebrow">┌ WRITING / ARCHIVE</p>
+  <h1>Archive</h1>
+  <p class="page-intro">All {{ len $posts }} posts, grouped by publication date.</p>
+</header>
+<div class="archive">
+  {{ range $posts.GroupByDate "2006" }}
+  <section class="archive-year" aria-labelledby="year-{{ .Key }}">
+    <h2 id="year-{{ .Key }}">{{ .Key }}</h2>
+    {{ range .Pages.GroupByDate "January" }}
+    <div class="archive-month">
+      <h3>{{ .Key }}</h3>
+      {{ partial "post-list.html" .Pages }}
+    </div>
+    {{ end }}
+  </section>
   {{ else }}
-  <li>└─ no entries</li>
+  <p class="empty-state">No posts yet.</p>
   {{ end }}
-</ul>
+</div>
 {{ end }}

@@ -1,0 +1,9 @@
+{{ define "main" }}
+<header class="page-header">
+  <p class="eyebrow">┌ WRITING / TOPIC</p>
+  <h1>{{ .Title }}</h1>
+  <p class="page-intro">{{ len .Pages }} {{ if eq (len .Pages) 1 }}post{{ else }}posts{{ end }} in this topic.</p>
+</header>
+{{ partial "post-list.html" (.Pages.ByParam "series_order") }}
+<p class="page-next"><a href="{{ "/tags/" | relURL }}">← Back to all topics</a></p>
+{{ end }}

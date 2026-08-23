@@ -1,12 +1,12 @@
 {{ define "main" }}
-<pre>┌ Latest
-│
-└─ Recent Posts</pre>
-<ul class="post-list">
-  {{ range first 10 ((where .Site.RegularPages "Section" "posts").ByDate.Reverse) }}
-  <li>├─ <a href="{{ .RelPermalink }}">{{ .Title }}</a> ({{ .Date.Format "2006-01-02" }})</li>
-  {{ else }}
-  <li>└─ no posts yet</li>
-  {{ end }}
-</ul>
+{{- $posts := (where .Site.RegularPages "Section" "posts").ByDate.Reverse -}}
+<header class="page-header">
+  <p class="eyebrow">┌ WRITING / LATEST</p>
+  <h1>Latest posts</h1>
+  <p class="page-intro">The 10 newest entries, ordered by publication date.</p>
+</header>
+{{ partial "post-list.html" (first 10 $posts) }}
+{{ if gt (len $posts) 10 }}
+<p class="page-next"><a href="{{ "/archive/" | relURL }}">Browse all {{ len $posts }} posts in the archive →</a></p>
+{{ end }}
 {{ end }}

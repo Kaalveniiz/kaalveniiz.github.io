@@ -1,6 +1,7 @@
 +++
 title = "Cybersecurity in Medical Devices: Quality Management System Considerations and Content of Premarket Submissions 解析 - Chapter 1"
 date = 2026-06-04T23:45:00+08:00
+series_order = 1
 slug = "cybersecurity-in-medical-devices-quality-management-system-considerations-and-content-of-premarket-submissions-chapter-1-20260604-235121"
 tags = ["Cybersecurity in Medical Devices: Quality Management System Considerations and Content of Premarket Submissions"]
 draft = false

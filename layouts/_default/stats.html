@@ -1,9 +1,19 @@
 {{ define "main" }}
 <pre>┌ Visitor Stats
 │
-├─ Total visits: <span id="total-visits">loading...</span>
-├─ Total bot visits: <span id="total-bot-visits">loading...</span>
-├─ Today visits: <span id="today-visits">loading...</span>
-└─ Today bot visits: <span id="today-bot-visits">loading...</span></pre>
-<p id="stats-note">Source: Cloudflare Worker analytics endpoint.</p>
+├─ Visitors yesterday: <span id="yesterday-visitors">loading...</span>
+├─ Visitors overall: <span id="total-visitors">loading...</span>
+│
+├─ AI reads yesterday: <span id="ai-yesterday-total">loading...</span>
+│  ├─ Crawler / training: <span id="ai-yesterday-crawler">--</span>
+│  ├─ Search: <span id="ai-yesterday-search">--</span>
+│  └─ Assistant: <span id="ai-yesterday-assistant">--</span>
+│
+├─ AI reads overall: <span id="ai-overall-total">loading...</span>
+│  ├─ Crawler / training: <span id="ai-overall-crawler">--</span>
+│  ├─ Search: <span id="ai-overall-search">--</span>
+│  └─ Assistant: <span id="ai-overall-assistant">--</span>
+│
+└─ Last completed day: <span id="stats-day">--</span></pre>
+<p id="stats-note">Updated daily. Human visitors are estimated without storing raw IP addresses; AI reads are aggregate request counts.</p>
 {{ end }}
