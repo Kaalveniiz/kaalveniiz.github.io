@@ -4,7 +4,7 @@ compatibility_date = "2026-05-24"
 
 [vars]
 ALLOWED_ORIGINS = "https://kaalveniiz.net,https://www.kaalveniiz.net,https://kaalveniiz.github.io"
-CLOUDFLARE_ZONE_ID = ""
+CLOUDFLARE_ZONE_ID = "a66f771568393035d5465fd55fdf05f7"
 
 [triggers]
 crons = ["15 16 * * *"]
