@@ -101,8 +101,6 @@ The project includes a privacy-conscious Cloudflare Worker and D1 counter for un
   - `layouts/_default/baseof.html` (analytics script hook)
 - Active backend implementation:
   - `cloudflare-analytics/`
-- Archived alternative, not used:
-  - `vercel-analytics/`
 
 Current status:
 
