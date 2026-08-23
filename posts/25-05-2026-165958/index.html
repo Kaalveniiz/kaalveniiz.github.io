@@ -1,17 +1,20 @@
-<!doctype html><html lang=en><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=theme-color media="(prefers-color-scheme: light)" content="#ffffff"><meta name=theme-color media="(prefers-color-scheme: dark)" content="#000000"><meta name=apple-mobile-web-app-status-bar-style content="default"><meta name=analytics-endpoint content><title>AI医疗器械注册审查实操手册（工程团队版）- Chapter 5 | kaalveniiz.blog</title>
-<link rel=stylesheet href=/css/site.css></head><body><main class=win><div class=title>┌ kaalveniiz.blog ────────────────────────────────────────────────┐</div><section class=shell><aside class=left>├ INDEX TREE
+<!doctype html><html lang=en><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=theme-color media="(prefers-color-scheme: light)" content="#ffffff"><meta name=theme-color media="(prefers-color-scheme: dark)" content="#000000"><meta name=apple-mobile-web-app-status-bar-style content="default"><meta name=analytics-endpoint content="https://kaalveniiz-analytics.kaalveniiz-blog.workers.dev"><title>AI医疗器械注册审查实操手册（工程团队版）- Chapter 5 | kaalveniiz.blog</title>
+<link rel=stylesheet href=/css/site.css></head><body><a class=skip-link href=#content>Skip to content</a><main class=win><div class=title>┌ kaalveniiz.blog ────────────────────────────────────────────────┐</div><section class=shell><aside class=left><nav class=site-nav aria-label="Primary navigation">├ SITE MAP
 │
 ├─ ▸ <a href=/>Home</a>
-├─ ▾ Posts
+│
+├─ ▾ WRITING
 │ ├─ ▸ <a href=/posts/>Latest</a>
 │ ├─ ▸ <a href=/archive/>Archive</a>
-│ └─ ▸ <a href=/tags/>Tags</a>
-├─ ▸ <a href=/tafl/>Tafl</a>
-└─ ▸ <a href=/about/>About</a></aside><article class=right><pre>┌ Post: "AI医疗器械注册审查实操手册（工程团队版）- Chapter 5"
-│  Date: 2026-05-25
-│  Tags: [人工智能医疗器械注册审查指导原则解读]
+│ └─ ▸ <a href=/tags/>Topics <span class=nav-count>(5)</span></a>
 │
-└─ Content</pre><div><h1 id=ai医疗器械注册审查实操手册工程团队版>AI医疗器械注册审查实操手册（工程团队版）</h1><h2 id=第五章-核心矛盾与工程落地>第五章 核心矛盾与工程落地</h2><p>这一章不对应原文的某个固定章节，而是把我们在阅读和写作过程中反复遇到的<strong>监管理想 vs 工程现实</strong>的矛盾拎出来，逐个给出落地策略。</p><hr><h3 id=51-版本控制离散审批-vs-连续迭代>5.1 版本控制：离散审批 vs 连续迭代</h3><p><strong>矛盾在哪</strong>
+├─ ▾ EXPLORE
+│ └─ ▸ <a href=/tafl/>Tafl</a>
+│
+└─ ▾ INFO
+├─ ▸ <a href=/stats/>Stats</a>
+└─ ▸ <a href=/about/>About</a></nav></aside><article class=right id=content><header class="page-header post-header"><p class=eyebrow>┌ WRITING / POST</p><h1>AI医疗器械注册审查实操手册（工程团队版）- Chapter 5</h1><div class=post-meta><time datetime=2026-05-25>2026-05-25</time>
+<span aria-hidden=true>· </span>Filed under <a href=/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%8C%BB%E7%96%97%E5%99%A8%E6%A2%B0%E6%B3%A8%E5%86%8C%E5%AE%A1%E6%9F%A5%E6%8C%87%E5%AF%BC%E5%8E%9F%E5%88%99%E8%A7%A3%E8%AF%BB/>人工智能医疗器械注册审查指导原则解读</a></div></header><div class=post-content><h1 id=ai医疗器械注册审查实操手册工程团队版>AI医疗器械注册审查实操手册（工程团队版）</h1><h2 id=第五章-核心矛盾与工程落地>第五章 核心矛盾与工程落地</h2><p>这一章不对应原文的某个固定章节，而是把我们在阅读和写作过程中反复遇到的<strong>监管理想 vs 工程现实</strong>的矛盾拎出来，逐个给出落地策略。</p><hr><h3 id=51-版本控制离散审批-vs-连续迭代>5.1 版本控制：离散审批 vs 连续迭代</h3><p><strong>矛盾在哪</strong>
 监管要求每次算法更新都归类为"重大"或"轻微"，重大需申请变更注册，轻微通过质量管理体系控制（第6页）。但现代AI开发是连续迭代：每天都有commit、每周都有数据增量、框架小版本静默升级。监管的二元切分跟工程的连续光谱根本对不上。</p><p><strong>审评员的真实担忧</strong>
 不是怕你更新太频繁，是怕你更新了什么自己都不知道，出了事找不到根因。NMPA的"重大/轻微"本质上是在问：这次更新如果出了问题，影响有多大？你能不能控制住？</p><p><strong>工程团队怎么应对</strong></p><p><strong>正经方案</strong></p><ul><li>建立内部"预注册版本"机制：每3-6个月冻结一个候选版本，在此期间的所有迭代在内部走敏捷流程，冻结点后统一打包走变更注册或首次注册。</li><li>版本号显式区分算法版本和数据版本：<code>V2.1.0-ALG3-DATA2</code>表示第二次算法迭代+第二次数据迭代。</li><li>每次候选版本发布前做完整的回归测试：用同一套测试集跑上一个冻结版本和当前候选版本，做McNemar检验确认性能无显著退化。</li><li>维护一份《版本差异日志》，记录每个commit的变更类型（算法结构/数据/框架/配置）、影响评估、测试结论。</li></ul><p><strong>交差版</strong></p><ul><li>版本号简单分：V1.0（注册版）、V1.1（轻微更新）、V2.0（重大更新）。</li><li>轻微更新内部评估后走质量管理体系记录，重大更新才申请变更注册。</li><li>日志写"本次更新仅增加训练数据量500例，算法结构未改变，经评估属于轻微更新"。</li></ul><p><strong>核心原则</strong>
 监管的"离散"和工程的"连续"不可调和，但可以用"定期冻结"做缓冲。关键是让审评员相信：你虽然迭代频繁，但对外发布的每个版本都是经过完整验证的稳定快照。</p><hr><h3 id=52-数据质控制药车间思维-vs-算法工程实践>5.2 数据质控：制药车间思维 vs 算法工程实践</h3><p><strong>矛盾在哪</strong>
@@ -41,4 +44,4 @@
 回滚机制的价值不在于"能不能回"，而在于"回完之后结果和原来一样"。只有Docker镜像能确保这一点，单纯备份权重文件是不够的。</p><hr><h3 id=510-算法文档从画示意图到交得了差>5.10 算法文档：从"画示意图"到"交得了差"</h3><p><strong>矛盾在哪</strong>
 文件要求提供算法流程图、算法结构说明（第29页），但AI工程师的日常工作不涉及画Visio图。很多团队被要求补材料时，临时画几张框图应付，既不好看也不准确。</p><p><strong>审评员的真实担忧</strong>
 审评员看流程图不是想知道你用了几层卷积，是想确认你的数据处理链路是完整的：输入有没有校验？异常数据有没有处理？输出有没有后处理？有没有反馈闭环？</p><p><strong>工程团队怎么应对</strong></p><p><strong>正经方案</strong></p><ul><li>算法流程图标准化模板：<ul><li>输入层：数据来源、格式校验、预处理步骤</li><li>推理层：模型结构（粗粒度，不用画每层细节）、推理引擎、硬件加速</li><li>输出层：结果格式化、置信度阈值、后处理（NMS、连通域分析）</li><li>反馈层：结果存储、日志记录、异常上报</li></ul></li><li>用工具生成：Netron导出ONNX模型结构图、TensorBoard可视化计算图、或用draw.io画标准模板后复用。</li><li>算法结构说明表：列层名称、输入尺寸、输出尺寸、参数量、激活函数，不用贴代码。</li></ul><p><strong>交差版</strong></p><ul><li>画三个框：输入 → 深度学习模型 → 输出。</li><li>写"基于深度卷积神经网络，具体结构详见附件代码"。</li></ul><p><strong>核心原则</strong>
-算法文档是给非AI背景的审评员看的。他不需要理解Transformer的注意力机制，他需要确认你的系统有没有明显的结构性漏洞（比如没有输入校验就直接进模型）。流程图的价值在"完整"不在"精细"。</p></div></article></section><footer class=status>Status: online | time: <span id=status-clock>--:--:--</span></footer></main><script>(function(){function e(e){return String(e).padStart(2,"0")}function t(){var t,n=document.getElementById("status-clock");if(!n)return;t=new Date,n.textContent=t.getFullYear()+"-"+e(t.getMonth()+1)+"-"+e(t.getDate())+" "+e(t.getHours())+":"+e(t.getMinutes())+":"+e(t.getSeconds())}t(),window.setInterval&&window.setInterval(t,1e3)})()</script><script src=/js/analytics.js defer></script></body></html>
+算法文档是给非AI背景的审评员看的。他不需要理解Transformer的注意力机制，他需要确认你的系统有没有明显的结构性漏洞（比如没有输入校验就直接进模型）。流程图的价值在"完整"不在"精细"。</p></div><nav class=post-pagination aria-label="More posts"><div><span>Previous post</span><a href=/posts/25-05-2026-165842/>← AI医疗器械注册审查实操手册（工程团队版）- Chapter 4</a></div><div><span>Next post</span><a href=/posts/25-05-2026-170106/>AI医疗器械注册审查实操手册（工程团队版）- Chapter 6 →</a></div></nav></article></section><footer class=status>Status: online | time: <span id=status-clock>--:--:--</span></footer></main><script>(function(){function e(e){return String(e).padStart(2,"0")}function t(){var t,n=document.getElementById("status-clock");if(!n)return;t=new Date,n.textContent=t.getFullYear()+"-"+e(t.getMonth()+1)+"-"+e(t.getDate())+" "+e(t.getHours())+":"+e(t.getMinutes())+":"+e(t.getSeconds())}t(),window.setInterval&&window.setInterval(t,1e3)})()</script><script src=/js/analytics.js defer></script></body></html>

@@ -1,17 +1,20 @@
-<!doctype html><html lang=en><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=theme-color media="(prefers-color-scheme: light)" content="#ffffff"><meta name=theme-color media="(prefers-color-scheme: dark)" content="#000000"><meta name=apple-mobile-web-app-status-bar-style content="default"><meta name=analytics-endpoint content><title>AI医疗器械注册审查实操手册（工程团队版）- Chapter 4 | kaalveniiz.blog</title>
-<link rel=stylesheet href=/css/site.css></head><body><main class=win><div class=title>┌ kaalveniiz.blog ────────────────────────────────────────────────┐</div><section class=shell><aside class=left>├ INDEX TREE
+<!doctype html><html lang=en><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=theme-color media="(prefers-color-scheme: light)" content="#ffffff"><meta name=theme-color media="(prefers-color-scheme: dark)" content="#000000"><meta name=apple-mobile-web-app-status-bar-style content="default"><meta name=analytics-endpoint content="https://kaalveniiz-analytics.kaalveniiz-blog.workers.dev"><title>AI医疗器械注册审查实操手册（工程团队版）- Chapter 4 | kaalveniiz.blog</title>
+<link rel=stylesheet href=/css/site.css></head><body><a class=skip-link href=#content>Skip to content</a><main class=win><div class=title>┌ kaalveniiz.blog ────────────────────────────────────────────────┐</div><section class=shell><aside class=left><nav class=site-nav aria-label="Primary navigation">├ SITE MAP
 │
 ├─ ▸ <a href=/>Home</a>
-├─ ▾ Posts
+│
+├─ ▾ WRITING
 │ ├─ ▸ <a href=/posts/>Latest</a>
 │ ├─ ▸ <a href=/archive/>Archive</a>
-│ └─ ▸ <a href=/tags/>Tags</a>
-├─ ▸ <a href=/tafl/>Tafl</a>
-└─ ▸ <a href=/about/>About</a></aside><article class=right><pre>┌ Post: "AI医疗器械注册审查实操手册（工程团队版）- Chapter 4"
-│  Date: 2026-05-25
-│  Tags: [人工智能医疗器械注册审查指导原则解读]
+│ └─ ▸ <a href=/tags/>Topics <span class=nav-count>(5)</span></a>
 │
-└─ Content</pre><div><h1 id=ai医疗器械注册审查实操手册工程团队版>AI医疗器械注册审查实操手册（工程团队版）</h1><h2 id=第四章-注册申报算法研究资料填写指南>第四章 注册申报：算法研究资料填写指南</h2><h3 id=40-先判断你需要交多厚的作业>4.0 先判断：你需要交多厚的作业？</h3><p><strong>监管原文要点</strong></p><ul><li>软件安全性级别为<strong>中等、严重</strong>：全新类型需提交完整算法研究报告（8个章节）；成熟类型只需明确算法基本信息</li><li>软件安全性级别为<strong>轻微</strong>：只需明确算法基本信息，无需算法研究资料</li><li>算法更新：需提交算法更新研究报告，涵盖自前次注册以来全部更新内容</li></ul><p><strong>监管为什么这样分层</strong>
+├─ ▾ EXPLORE
+│ └─ ▸ <a href=/tafl/>Tafl</a>
+│
+└─ ▾ INFO
+├─ ▸ <a href=/stats/>Stats</a>
+└─ ▸ <a href=/about/>About</a></nav></aside><article class=right id=content><header class="page-header post-header"><p class=eyebrow>┌ WRITING / POST</p><h1>AI医疗器械注册审查实操手册（工程团队版）- Chapter 4</h1><div class=post-meta><time datetime=2026-05-25>2026-05-25</time>
+<span aria-hidden=true>· </span>Filed under <a href=/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%8C%BB%E7%96%97%E5%99%A8%E6%A2%B0%E6%B3%A8%E5%86%8C%E5%AE%A1%E6%9F%A5%E6%8C%87%E5%AF%BC%E5%8E%9F%E5%88%99%E8%A7%A3%E8%AF%BB/>人工智能医疗器械注册审查指导原则解读</a></div></header><div class=post-content><h1 id=ai医疗器械注册审查实操手册工程团队版>AI医疗器械注册审查实操手册（工程团队版）</h1><h2 id=第四章-注册申报算法研究资料填写指南>第四章 注册申报：算法研究资料填写指南</h2><h3 id=40-先判断你需要交多厚的作业>4.0 先判断：你需要交多厚的作业？</h3><p><strong>监管原文要点</strong></p><ul><li>软件安全性级别为<strong>中等、严重</strong>：全新类型需提交完整算法研究报告（8个章节）；成熟类型只需明确算法基本信息</li><li>软件安全性级别为<strong>轻微</strong>：只需明确算法基本信息，无需算法研究资料</li><li>算法更新：需提交算法更新研究报告，涵盖自前次注册以来全部更新内容</li></ul><p><strong>监管为什么这样分层</strong>
 NMPA不想把行政资源浪费在低风险产品上，也不想对高风险产品放手不管。&ldquo;轻微级别只需基本信息"是给非辅助决策类工具开的绿灯——你只是个自动测量尺子，审你的算法细节意义不大。&ldquo;全新类型/中高风险要8章"是因为审评员没见过你这类产品，需要完整证据链来建立信任。</p><p><strong>核心原则</strong>
 宁可按中等级别准备。级别判定的弹性很大，你觉得自己是轻微，审评员可能认为是中等。材料多了可以删，少了补起来要重走流程。</p><hr><h3 id=41-算法研究报告8章填写指南>4.1 算法研究报告8章填写指南</h3><h4 id=第1章-算法基本信息>第1章 算法基本信息</h4><p><strong>监管要求</strong></p><ul><li>算法名称、类型（学习策略、学习方法、可解释性）、结构（层数、参数规模）、输入输出、流程图</li><li>算法框架（名称、类型、型号规格、完整版本、制造商；若云计算需明确名称/服务模式/部署模式/配置/云服务商资质）</li><li>运行环境（硬件配置、外部软件环境、网络条件；若AI芯片需名称/型号/制造商/性能指标）</li><li>算法选用依据</li></ul><p><strong>监管为什么要求这个</strong>
 这一章的本质是"你是谁，从哪来&rdquo;。审评员拿到一份陌生的技术报告，首先要建立基本认知：这玩意用的是什么技术路线？跑在什么环境上？是不是用了境外云服务（数据主权问题）？选用依据是为了防止你拍脑袋——&ldquo;为什么不用更成熟的方案？&ldquo;&ldquo;为什么用这个黑盒？&rdquo;</p><p><strong>填写要点</strong></p><ul><li>算法名称要规范，建议格式：&ldquo;基于深度学习的XX疾病辅助检测算法&rdquo;</li><li>算法类型从三个维度描述：有监督学习、基于数据、黑盒算法</li><li>流程图用Visio或draw.io画，保存为矢量图插入报告</li><li>框架信息做成表格，附pip freeze或conda list截图</li><li>选用依据写半页到一页，引用2-3篇关键文献支撑</li></ul><p><strong>交差版</strong></p><ul><li>算法类型只写"深度学习&rdquo;</li><li>流程图用PPT画三个框截图</li><li>选用依据写"该算法在ImageNet分类任务中表现优异，具有较好的特征提取能力&rdquo;</li></ul><p><strong>核心原则</strong>
@@ -35,4 +38,4 @@ AI团队最大的毛病是"边做边改需求"。在医疗器械监管里，需�
 AI模型是"养"出来的，每次数据增量、每次框架小升级、每次超参数微调都会改变模型行为。审评员怕的是"温水煮青蛙"——单次更新看起来轻微，累积起来模型已经面目全非。所以要求你把从上次注册以来的所有更新打包交代清楚。</p><p><strong>填写要点</strong></p><ul><li>与首次注册的算法研究报告结构相同</li><li>每章开头加"更新说明"小节，用表格对比前次注册vs本次申报：<ul><li>算法基本信息：有/无变化，变化内容</li><li>风险管理：有/无变化</li><li>数据质控：训练集从X例增加到Y例，新增数据来源Z医院</li><li>算法训练：框架从PyTorch 1.12升级到2.0（效率型更新）</li><li>验证与确认：新增压力测试/对抗测试</li></ul></li><li>若某章无变化，写"本章内容与前次注册一致"</li></ul><p><strong>核心原则</strong>
 更新报告的核心是"diff"——跟上次比，变了什么、为什么变、变完之后还安不安全。没有变化也要明确说"没变化"，留白等于可疑。</p><hr><h3 id=43-注册申报资料其他要点>4.3 注册申报资料其他要点</h3><p><strong>产品注册</strong></p><ul><li><strong>申请表</strong>：产品名称体现输入数据+目标疾病+预期用途（如"CT图像肺结节辅助检测软件"）</li><li><strong>用户培训方案</strong>：严重级别、患者使用或基层医疗机构使用的产品需单独提供</li><li><strong>产品技术要求</strong>：若含测评数据库测试指标，附录中明确测评数据库基本信息</li><li><strong>说明书</strong>：必须写使用限制和警示；辅助决策类需写算法性能评估总结、临床评价总结、决策指标定义</li></ul><p><strong>监管为什么说明书要管这么细</strong>
 说明书是上市后监管的重要抓手。审评员默认医生不会去看你的技术报告，但会看说明书。如果说明书里不写限制，出了事谁负责？辅助决策类要求写"决策指标定义"，是为了防止医生误读模型输出——比如把"恶性概率"当成"确诊"。</p><p><strong>变更注册</strong></p><ul><li>按更新情况提交算法更新研究报告或完整算法研究报告</li><li>提交产品技术要求变更对比表（体现测评数据库变化）</li><li>提交说明书变化情况说明</li></ul><p><strong>延续注册</strong></p><ul><li>通常无需提交算法相关研究资料</li><li>除非注册证"备注"有特别要求</li></ul><p><strong>核心原则</strong>
-注册申报不是"一次性"的，是从上市前到退市的全生命周期管理。每次变更、每次延续，都是在续一份技术债务的账单。</p></div></article></section><footer class=status>Status: online | time: <span id=status-clock>--:--:--</span></footer></main><script>(function(){function e(e){return String(e).padStart(2,"0")}function t(){var t,n=document.getElementById("status-clock");if(!n)return;t=new Date,n.textContent=t.getFullYear()+"-"+e(t.getMonth()+1)+"-"+e(t.getDate())+" "+e(t.getHours())+":"+e(t.getMinutes())+":"+e(t.getSeconds())}t(),window.setInterval&&window.setInterval(t,1e3)})()</script><script src=/js/analytics.js defer></script></body></html>
+注册申报不是"一次性"的，是从上市前到退市的全生命周期管理。每次变更、每次延续，都是在续一份技术债务的账单。</p></div><nav class=post-pagination aria-label="More posts"><div><span>Previous post</span><a href=/posts/25-05-2026-165740/>← AI医疗器械注册审查实操手册（工程团队版）- Chapter 3</a></div><div><span>Next post</span><a href=/posts/25-05-2026-165958/>AI医疗器械注册审查实操手册（工程团队版）- Chapter 5 →</a></div></nav></article></section><footer class=status>Status: online | time: <span id=status-clock>--:--:--</span></footer></main><script>(function(){function e(e){return String(e).padStart(2,"0")}function t(){var t,n=document.getElementById("status-clock");if(!n)return;t=new Date,n.textContent=t.getFullYear()+"-"+e(t.getMonth()+1)+"-"+e(t.getDate())+" "+e(t.getHours())+":"+e(t.getMinutes())+":"+e(t.getSeconds())}t(),window.setInterval&&window.setInterval(t,1e3)})()</script><script src=/js/analytics.js defer></script></body></html>

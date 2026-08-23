@@ -16,18 +16,24 @@
   }
 
   var endpoint = endpointFromMeta();
-  if (!endpoint) return;
+  if (!endpoint) {
+    text("yesterday-visitors", "--");
+    text("total-visitors", "--");
+    text("ai-yesterday-total", "--");
+    text("ai-overall-total", "--");
+    text("stats-day", "--");
+    text("stats-note", "Visitor counter is not connected yet.");
+    return;
+  }
 
   try {
     fetch(endpoint + "/collect", {
       method: "POST",
-      keepalive: true,
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ path: location.pathname, referrer: document.referrer || "" })
+      keepalive: true
     }).catch(function () {});
   } catch (_err) {}
 
-  if (!document.getElementById("total-visits")) return;
+  if (!document.getElementById("total-visitors")) return;
 
   fetch(endpoint + "/stats")
     .then(safeJson)
@@ -36,10 +42,17 @@
         text("stats-note", "Stats endpoint unavailable.");
         return;
       }
-      text("total-visits", data.total_visits || 0);
-      text("total-bot-visits", data.total_bot_visits || 0);
-      text("today-visits", data.today_visits || 0);
-      text("today-bot-visits", data.today_bot_visits || 0);
+      text("total-visitors", data.total_visitors || 0);
+      text("yesterday-visitors", data.yesterday_visitors || 0);
+      text("stats-day", data.day || "--");
+
+      var aiReads = data.ai_reads || {};
+      var yesterday = aiReads.yesterday || {};
+      var overall = aiReads.overall || {};
+      ["crawler", "search", "assistant", "total"].forEach(function (category) {
+        text("ai-yesterday-" + category, yesterday[category] || 0);
+        text("ai-overall-" + category, overall[category] || 0);
+      });
     })
     .catch(function () {
       text("stats-note", "Stats endpoint unavailable.");
