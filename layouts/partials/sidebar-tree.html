@@ -1,6 +1,9 @@
 {{- $isLatest := and (eq .Kind "section") (eq .Section "posts") -}}
 {{- $isArchive := eq .RelPermalink ("/archive/" | relURL) -}}
-{{- $isTopics := or (eq .Kind "taxonomy") (eq .Kind "term") -}}
+{{- $isFreaTerm := and (eq .Kind "term") (eq (lower .Data.Term) "frea") -}}
+{{- $isFreaPost := and .IsPage (in .Params.tags "Frea") -}}
+{{- $isFrea := or $isFreaTerm $isFreaPost -}}
+{{- $isTopics := and (or (eq .Kind "taxonomy") (eq .Kind "term")) (not $isFrea) -}}
 {{- $isTafl := eq .RelPermalink ("/tafl/" | relURL) -}}
 {{- $isStats := eq .RelPermalink ("/stats/" | relURL) -}}
 {{- $isAbout := eq .RelPermalink ("/about/" | relURL) -}}
@@ -12,6 +15,7 @@
 ├─ ▾ WRITING
 │  ├─ ▸ <a{{ if $isLatest }} class="is-active" aria-current="page"{{ end }} href="{{ "/posts/" | relURL }}">Latest</a>
 │  ├─ ▸ <a{{ if $isArchive }} class="is-active" aria-current="page"{{ end }} href="{{ "/archive/" | relURL }}">Archive</a>
+│  ├─ ▸ <a{{ if $isFrea }} class="is-active" aria-current="page"{{ end }} href="{{ "/tags/frea/" | relURL }}">Frea Weekly{{ with index .Site.Taxonomies.tags "frea" }} <span class="nav-count">({{ len . }})</span>{{ end }}</a>
 │  └─ ▸ <a{{ if $isTopics }} class="is-active" aria-current="page"{{ end }} href="{{ "/tags/" | relURL }}">Topics <span class="nav-count">({{ len .Site.Taxonomies.tags }})</span></a>
 │
 ├─ ▾ EXPLORE
